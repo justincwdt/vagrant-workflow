@@ -30,7 +30,7 @@
 #Function Points
   * update and dist-upgrade to latest for all packages
   * install ```redis-server``` and start it
-  * configure hostname to firstname.lastname substituting your first and last names
+  * configure hostname to firstname-lastname substituting your first and last names
   * set domain name to hack.local
   * add 3 users, larry, moe, and curly -- disabled passwords for interactive login
   * moe is a sysadmin, and should be able to sudo without a password
