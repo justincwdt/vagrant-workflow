@@ -26,7 +26,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.name = 'Linux Class Automation Assignment'
     v.memory = ENV['VAGRANT_MEMORY'] || 4096
     v.cpus = ENV['VAGRANT_CPUS'] || 4
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.auto_nat_dns_proxy = false
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "off" ]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "off" ]
+#v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     override.vm.network :private_network, ip: "192.168.44.10"
   end
 
