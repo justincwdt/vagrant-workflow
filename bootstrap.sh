@@ -49,12 +49,12 @@ apt-get install dnsmasq -yf
 echo listen-address=127.0.0.1 >> /etc/dnsmasq.conf
 echo no-dhcp-interface=lo >> /etc/dnsmasq.conf
 
-echo 127.0.1.1 ironman >> /etc/hosts
-echo 127.0.1.2 hawkeye >> /etc/hosts
-echo 127.0.1.3 hulk >> /etc/hosts
+echo "127.0.1.1 ironman" >> /etc/hosts
+echo "127.0.1.2 hawkeye" >> /etc/hosts
+echo "127.0.1.3 hulk" >> /etc/hosts
 
 # Makes hack.local default search domain
-echo search hack.local >> /etc/resolv.conf
+echo "search hack.local" >> /etc/resolv.conf
 
 # Write protects dns resolver because dhcp resets it
 chattr +i /etc/resolv.conf
