@@ -59,8 +59,9 @@ apt-get install ntpdate -yf
 apt-get install dnsmasq -yf
 
 # Use system as DNS cache - MAY BE WRONG
-echo "listen-address=127.0.0.1" >> /etc/dnsmasq.conf
-echo "no-dhcp-interface=lo" >> /etc/dnsmasq.conf
+# echo "listen-address=127.0.0.1" >> /etc/dnsmasq.conf
+# echo "no-dhcp-interface=lo" >> /etc/dnsmasq.conf
+dnsmasq -a 127.0.0.1
 
 # Creates entries in hosts file
 echo "127.0.1.1 ironman" >> /etc/hosts
@@ -87,8 +88,8 @@ ufw default deny outgoing
 ufw default deny incoming
 
 # Firewall allow rule
-ufw allow proto tcp to port 22
-#ufw allow proto tcp from any port 22
+ufw allow 22/tcp
+echo "y" | ufw enable
 
 # Remove current timezone and sets it for UTC timezone
 rm /etc/localtime
@@ -103,7 +104,7 @@ echo "* * * * * root touch /root/hi" >> /etc/crontab
 # Installs multiple packages
 apt-get install unison curl git-core unzip tmux htop sysstat -yf
 
-# Creates and formats first sparse file
+# Creates one 1gb sparse file and formats it
 dd if=/dev/zero of=/root/onesparse bs=1 count=0 seek=1GB
 mkfs.ext3 -qF /root/onesparse
 
@@ -115,5 +116,9 @@ dd if=/dev/zero of=/root/twoAsparse bs=1 count=0 seek=1GB
 dd if=/dev/zero of=/root/twoBsparse bs=1 count=0 seek=1GB
 dd if=/dev/zero of=/root/twoCsparse bs=1 count=0 seek=1GB
 
-# Need this to manage LVM ??
+# Creates two 1gb sparse files
+dd if=/dev/zero of=/root/threeAsparse bs=1 count=0 seek=1GB
+dd if=/dev/zero of=/root/threeBsparse bs=1 count=0 seek=1GB
+
+# Need this to manage LVM
 apt-get install lvm2 -yf
